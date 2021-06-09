@@ -1,0 +1,15 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <p>Desafio 2</p>
+    <hr>
+    <button v-on:click='exibirAlerta'>Exibir Alerta</button>
+    <hr>
+    <input type="text" v-on:keydown='armazenaValor' placeholder="KeyUp">
+    <p>{{ valor }}</p>
+    <input type="text" v-on:keydown.enter='valor2 = $event.target.value' placeholder="KeyUp Com Enter">
+    <p>{{ valor2 }}</p>
+</div>
+
+
+<script src="./app.js"></script>

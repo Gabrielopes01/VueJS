@@ -1,0 +1,40 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <h2>#1</h2>
+    <button @click="paragrafo = !paragrafo">Alterar</button>
+    <p v-if="paragrafo">Primeiro Paragrafo com If</p>
+    <p v-else>Segundo Paragrafo com If</p>
+    <p v-show="paragrafo">Primeiro Paragrafo com Show</p>
+    <p v-show="!paragrafo">Segundo Paragrafo com Show</p>
+    <hr>
+    <h2>#2</h2>
+    <ul>
+        <li v-for='(fruta, index) in lista'>
+            {{ index+1 }} - {{ fruta }}  
+        </li>
+    </ul>
+    <hr>
+    <h2>#3</h2>
+    <ul>
+        <li v-for="(valor, chave, index) in livro">
+            {{index + 1}} - {{ chave }} - {{ valor }}
+        </li>
+    </ul>
+    <hr>
+    <h2>#4</h2>
+    <ul>
+        <li v-for="valor in aluno" v-if="Array.isArray(valor)">
+            <ul>
+                <li v-for="item in valor">
+                    {{ item }}
+                </li>
+            </ul>
+        </li>
+        <li v-else>
+            {{valor}}
+        </li>
+    </ul>
+</div>
+
+<script src="./app.js"></script>

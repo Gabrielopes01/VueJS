@@ -1,0 +1,36 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<!--<button onclick="abrir()">Abrir</button>-->
+<div id="app">
+  <p v-once>Você deseja abrir() a porta? Digite a senha e entre com o Botão</p>
+  <hr>
+  <p>Senha:</p>
+  <input type="text" v-model='linkHtml'>
+  <hr>
+  <p v-html="linkHtml"></p>
+  <p id="status"></p>
+</div>
+
+
+<script>
+    function abrir()
+    {
+        console.log('Senha Aprovada');
+        document.getElementById('status').innerHTML = 'A Porta foi Aberta';
+    }
+    new Vue({
+        el:'#app',
+        data() {
+            return {
+                titulo: 'A Sabedoria',
+                link: 'https://www.google.com/',
+                linkHtml: '',
+            }
+        },
+        methods: {
+            saudacao: function() {
+                this.titulo = 'é um ciclo';
+                return this.titulo;
+            }
+        },
+    })
+</script>

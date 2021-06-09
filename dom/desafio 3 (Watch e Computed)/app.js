@@ -1,0 +1,21 @@
+new Vue({
+    el:'#app',
+    data() {
+        return {
+            valor: 0,
+        }
+    },
+    computed: {
+        resultado() {
+            return this.valor == 37 ?
+            'Valor Igual' : 'Valor Diferente'
+        }
+    },
+    watch: {
+        resultado(novo, antigo) {
+            setTimeout(() => {
+                this.valor = 0
+            }, 5000)
+        }
+    }
+})

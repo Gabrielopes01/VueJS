@@ -1,0 +1,29 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<!--V-html permite implementar uma tag html sem ser string-->
+<div id="app">
+  <p v-once>{{ titulo }}</p>
+  <p>{{ saudacao() }}</p>
+  <a v-bind:href="link">Google</a>
+  <hr>
+  <p v-html="linkHtml"></p>
+</div>
+
+
+<script>
+    new Vue({
+        el:'#app',
+        data() {
+            return {
+                titulo: 'Usando VueJs',
+                link: 'https://www.google.com/',
+                linkHtml: '<a href="https://www.google.com/">Google</a>',
+            }
+        },
+        methods: {
+            saudacao: function() {
+                this.titulo = 'Alterando Valor';
+                return this.titulo;
+            }
+        },
+    })
+</script>
