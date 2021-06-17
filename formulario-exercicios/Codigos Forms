@@ -1,0 +1,3 @@
+Quando temos um v-model, podemos colocar alguns modificadores:
+- lazy = Só atualiza no Vue após sair do foco do campo
+- trim = Remove espaços em branco nas pontas
