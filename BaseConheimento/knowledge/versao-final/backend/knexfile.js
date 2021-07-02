@@ -1,4 +1,10 @@
-const { db } = require('./.env')
+const  db  = {
+	host: '127.0.0.1',
+    port: 5432,
+    database: 'knowledge_final',
+    user: 'postgres',
+    password: '123'
+}
 
 module.exports = {
 	client: 'postgresql',

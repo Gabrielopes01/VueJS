@@ -3,7 +3,7 @@ module.exports = app => {
         users: Number,
         categories: Number,
         articles: Number,
-        createdAt:Date
+        createdAt: Date
     })
 
     const get = (req, res) => {
@@ -12,7 +12,7 @@ module.exports = app => {
                 const defaultStat = {
                     users: 0,
                     categories: 0,
-                    articles: 0,
+                    articles: 0
                 }
                 res.json(stat || defaultStat)
             })

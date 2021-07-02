@@ -28,10 +28,11 @@ module.exports = app => {
                 notExistsOrError(userFromDB, 'Usuário já cadastrado')
             }
         } catch(msg) {
-            return res.status(400)
+            return res.status(400).send(msg)
         } 
 
-        user.password = encryptPassword(req.body.password)
+        user.password = encryptPassword(user.password)
+        delete user.confirmPassword
 
         if(user.id) {
             app.db('users')
@@ -77,9 +78,9 @@ module.exports = app => {
                 .where({ id: req.params.id })
             existsOrError(rowsUpdated, 'Usuário não foi encontrado')
 
-            req.status(204).send()
-        } catch(e) {
-            req.status(400).send(e)
+            res.status(204).send()
+        } catch(msg) {
+            res.status(400).send(msg)
         }
     }
 

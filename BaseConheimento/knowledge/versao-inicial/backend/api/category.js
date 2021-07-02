@@ -1,8 +1,13 @@
 module.exports = app => {
     const { existsOrError, notExistsOrError } = app.api.validation
 
-    const save = (req, res) =>  {
-        const category = { ...req.body }
+    const save = (req, res) => {
+        const category = { 
+            id: req.body.id,
+            name: req.body.name,
+            parentId: req.body.parentId
+        }
+
         if(req.params.id) category.id = req.params.id
 
         try {
@@ -35,11 +40,11 @@ module.exports = app => {
 
             const articles = await app.db('articles')
                 .where({ categoryId: req.params.id })
-            notExistsOrError(articles, 'Categoria pussui artigos')
+            notExistsOrError(articles, 'Categoria possui artigos')
 
             const rowsDeleted = await app.db('categories')
                 .where({ id: req.params.id }).del()
-            existsOrError(rowsDeleted, 'Categoria não encontrada')
+            existsOrError(rowsDeleted, 'Categoria não foi encontrada')
 
             res.status(204).send()
         } catch(msg) {
@@ -92,7 +97,7 @@ module.exports = app => {
         if(!tree) tree = categories.filter(c => !c.parentId)
         tree = tree.map(parentNode => {
             const isChild = node => node.parentId == parentNode.id
-            parentNode.children = toTree(categories)
+            parentNode.children = toTree(categories, categories.filter(isChild))
             return parentNode
         })
         return tree
@@ -100,8 +105,9 @@ module.exports = app => {
 
     const getTree = (req, res) => {
         app.db('categories')
-            .then(categories => res.json(toTree(withPath(categories))))
+            .then(categories => res.json(toTree(categories)))
+            .catch(err => res.status(500).send(err))
     }
 
-    return { save, remove, get, getById }
+    return { save, remove, get, getById, getTree }
 }
